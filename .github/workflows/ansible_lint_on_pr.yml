@@ -7,4 +7,4 @@ jobs:
       - name: check code out from github and into "ubuntu-latest" (or our environment)
         uses: actions/checkout@v3
       - name: lint ansible playbook playbook.yml
-        uses: ansible/ansible-lint   #@main
+        uses: ansible/ansible-lint@main   # this is there branch
