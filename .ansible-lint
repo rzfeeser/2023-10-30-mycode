@@ -3,5 +3,5 @@
 
 exclude_paths:
   - .github/
-  - ./hosts
+  - hosts
   - ./README.md
