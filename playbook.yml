@@ -2,6 +2,7 @@
 - name: Monday morning review
   connection: local
   hosts: ansibleController
+  gather_facts: false
 
   tasks:
 
