@@ -1,5 +1,5 @@
 ---
-- name: Monday morning review
+- name: Monday morning review    # metadata
   connection: local
   hosts: ansibleController
   gather_facts: false
