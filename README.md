@@ -3,5 +3,5 @@
 Best Practice Ansible Repository
 - GitHub Actions
 - Linting on PR
--   Only lints what is in playbooks/ by following .lint-config
+-   Only lints what is in playbooks/ by following .ansible-lint
 - Execution on WorkFlow Dispatch
