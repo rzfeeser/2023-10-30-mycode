@@ -14,3 +14,12 @@
     - name: Display results
       ansible.builtin.debug:
         var: results
+
+    - name: Http lookup to alta3.com
+      ansible.builtin.uri:
+        url: https://rzfeeser.com
+      register: results
+
+    - name: Display results
+      ansible.builtin.debug:
+        var: results
