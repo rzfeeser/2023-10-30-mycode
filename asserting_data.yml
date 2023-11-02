@@ -1,0 +1,42 @@
+---
+- name: validate inputs
+  connection: local
+  gather_facts: false
+  hosts: localhost
+
+  vars:
+    all_strings:
+      - larry
+      - monster mash
+      - "graveyard smash"
+      #- 3.14   # this is a float, it will fail
+      #- ""     # this will cause a fail as well
+    network_scopes:
+      - 10.0.0.0/24    # ['10.0.0.0', '24']
+      - 192.168.3.0/24
+      - 172/2/3/2
+
+  pre_tasks:
+
+    - name: Confirm device add
+      ansible.builtin.pause:
+        prompt: "What is your name?"
+      register: your_name
+      until: your_name.user_input | length > 4
+
+    - name: Assert someone only passed in strings
+      ansible.builtin.assert:
+        that:
+          - item | length != 0   # this ONLY works on strings so it validates for string
+        success_msg: Your data looks good
+        fail_msg: The data was not formatted properly
+      loop: "{{ all_strings }}"
+
+    - name: Assert the correct number of slashes
+      ansible.builtin.assert:
+        that:
+          - item.split("/") | length == 2  # ensures there is only 1 slash
+          - item.split("/")[-1] in ["24", "26"]
+        success_msg: you only have one slash, great!
+        fail_msg: you have too many or too few slashes
+      loop: "{{ network_scopes }}"
